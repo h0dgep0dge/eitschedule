@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-docker built -t h0dgep0dge/pgphpapache .
+docker build -t h0dgep0dge/pgphpapache .
 
 docker stop postgres httpd
 
