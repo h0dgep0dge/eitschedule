@@ -58,6 +58,8 @@ function get_schedule($conn,$day,$week,$courses) {
     return $schedule;
 }
 
+$days = Array('mon'=>'Monday','tue'=>'Tuesday','wed'=>'Wednesday','thu'=>'Thursday','fri'=>'Friday','sat'=>'Saturday','sun'=>'Sunday');
+
 // Connecting, selecting database
 $dbconn = pg_connect("host=localhost dbname=schedule user=postgres password=tinykite04")
     or die('Could not connect: ' . pg_last_error());
@@ -79,7 +81,7 @@ foreach(Array('mon','tue','wed','thu','fri') as $day) {
 
 
 
-$tr = "<tr><td rowspan=".(string)count($schedule).">".$day."</td>";
+$tr = "<tr><td rowspan=".(string)count($schedule).">".$days[$day]."</td>";
 foreach($schedule as $line) {
     echo $tr;
     $tr = "<tr>";
