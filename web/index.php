@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html><body>
 <?php
 
 $dbconn = pg_connect("host=localhost dbname=schedule user=postgres password=tinykite04")
@@ -16,3 +18,7 @@ pg_free_result($result);
 pg_close($dbconn);
 
 ?>
+<br>
+This project is strictly alpha, do not rely on the results!
+</body>
+</html>
