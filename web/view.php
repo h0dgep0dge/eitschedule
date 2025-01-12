@@ -69,8 +69,8 @@ for($i = 7;$i < 17;$i += 0.5) {
 }
 echo "</tr>";
 
-if(isset($_POST['courses']))
-    $courses = $_POST['courses'];
+if(isset($_GET['courses']))
+    $courses = $_GET['courses'];
 else
     $courses = NULL;
 foreach(Array('mon','tue','wed','thu','fri') as $day) {
