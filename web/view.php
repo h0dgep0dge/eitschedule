@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <style>
-        td, th {
-            border: 1px solid;
-        }
-
-        th {
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 <?php
@@ -88,15 +80,15 @@ foreach($schedule as $line) {
     $tr = "<tr>";
     for($i = 7;$i < 17;) {
         if(count($line) == 0 || $line[0][2] > $i) {
-            echo "<td></td>";
+            echo "<td class='outer'></td>";
             $i += 0.5;
             continue;
         }
         if($line[0][2] == $i) {
-            echo "<td colspan='",$line[0][3]*2,"'>";
+            echo "<td class='outer' colspan='",$line[0][3]*2,"'>";
             echo "<table class='inner'>";
             echo "<tr class='inner'><td colspan='3' class='inner'>",$line[0][0],"</td></tr>";
-            echo "<tr class='inner'><td class='left'>",$line[0][1],"</td><td class='center'></td><td class='right'>",$line[0][4],"</td></tr>";
+            echo "<tr class='inner'><td class='left' colspan='2'>",$line[0][1],"</td><td class='right'>",$line[0][4],"</td></tr>";
             echo "</table>";
             $i += $line[0][3];
             array_shift($line);

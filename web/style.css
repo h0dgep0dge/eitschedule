@@ -1,0 +1,21 @@
+table.outer, th.outer, td.outer {
+    border: 1px solid;
+    table-layout: fixed;
+}
+
+th {
+    text-align: left;
+    width: auto;
+}
+
+th.min {
+    width: 30px;
+}
+
+table.inner {
+    width:100%;
+}
+
+td.right {
+    text-align: right;
+}
