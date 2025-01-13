@@ -65,10 +65,10 @@ $days = Array('mon'=>'Monday','tue'=>'Tuesday','wed'=>'Wednesday','thu'=>'Thursd
 $dbconn = pg_connect("host=localhost dbname=schedule user=postgres password=tinykite04")
     or die('Could not connect: ' . pg_last_error());
 
-echo "<table class='main'>\n";
-echo "<tr><td></td>";
+echo "<table class='outer'>\n";
+echo "<tr class='outer'><th class='outer'></th>";
 for($i = 7;$i < 17;$i += 0.5) {
-    echo "<th>",$i,"</th>";
+    echo "<th class='outer'>",$i,"</th>";
 }
 echo "</tr>";
 
@@ -82,7 +82,7 @@ foreach(Array('mon','tue','wed','thu','fri') as $day) {
 
 
 
-$tr = "<tr><td rowspan=".(string)count($schedule).">".$days[$day]."</td>";
+$tr = "<tr class='outer'><td class='outer' rowspan=".(string)count($schedule).">".$days[$day]."</td>";
 foreach($schedule as $line) {
     echo $tr;
     $tr = "<tr>";
