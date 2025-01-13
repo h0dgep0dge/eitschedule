@@ -1,8 +1,6 @@
 DROP DATABASE IF EXISTS schedule;
 CREATE DATABASE schedule;
 
-\connect schedule
-
 CREATE TABLE Lecturers (
     name VARCHAR(80) PRIMARY KEY NOT NULL,
     url VARCHAR(200)
