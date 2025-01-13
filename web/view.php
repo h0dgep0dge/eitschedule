@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <head>
     <style>
-        table, th, td {
-        border: 1px solid;
+        td, th {
+            border: 1px solid;
         }
 
         th {
@@ -21,9 +21,10 @@ function get_schedule($conn,$day,$week,$courses) {
             $where .= " OR Courses.name = '".$course."'";
         $where .= ") ";
     }
-    $query = "SELECT Courses.name,Slots.room,Slots.slottime,Slots.slotlength FROM Sessions ".
+    $query = "SELECT Courses.name,Courses.lecturername,Lecturers.url,Slots.room,Slots.slottime,Slots.slotlength FROM Sessions ".
              "JOIN Slots ON Sessions.slotID = Slots.slotID ".
              "JOIN Courses ON Slots.courseName = Courses.name ".
+             "JOIN Lecturers ON Courses.lecturername = Lecturers.name ".
              $where.
              "ORDER BY Slots.slottime;";
     $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
@@ -33,7 +34,7 @@ function get_schedule($conn,$day,$week,$courses) {
     $schedule = Array();
 
     while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-        $slots[] = Array($line["name"],$line["room"],(int)($line["slottime"]),(int)($line["slotlength"]));
+        $slots[] = Array($line["name"],$line["room"],(int)($line["slottime"]),(int)($line["slotlength"]),$line["lecturername"],$line["url"]);
     }
 
     while(count($slots) > 0) {
@@ -64,7 +65,7 @@ $days = Array('mon'=>'Monday','tue'=>'Tuesday','wed'=>'Wednesday','thu'=>'Thursd
 $dbconn = pg_connect("host=localhost dbname=schedule user=postgres password=tinykite04")
     or die('Could not connect: ' . pg_last_error());
 
-echo "<table>\n";
+echo "<table class='main'>\n";
 echo "<tr><td></td>";
 for($i = 7;$i < 17;$i += 0.5) {
     echo "<th>",$i,"</th>";
@@ -92,7 +93,11 @@ foreach($schedule as $line) {
             continue;
         }
         if($line[0][2] == $i) {
-            echo "<td colspan='",$line[0][3]*2,"'>",$line[0][0],"</td>";
+            echo "<td colspan='",$line[0][3]*2,"'>";
+            echo "<table class='inner'>";
+            echo "<tr class='inner'><td colspan='3' class='inner'>",$line[0][0],"</td></tr>";
+            echo "<tr class='inner'><td class='left'>",$line[0][1],"</td><td class='center'></td><td class='right'>",$line[0][4],"</td></tr>";
+            echo "</table>";
             $i += $line[0][3];
             array_shift($line);
         }
