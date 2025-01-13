@@ -24,7 +24,7 @@ BEGIN
             startend = r.split('-')
             l = None
             if len(startend) == 1:
-                l = startend[0]
+                l = [startend[0]]
             else:
                 l = range(int(startend[0]),int(startend[1])+1)
             
