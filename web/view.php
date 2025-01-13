@@ -88,7 +88,7 @@ foreach($schedule as $line) {
             echo "<td class='outer' colspan='",$line[0][3]*2,"'>";
             echo "<table class='inner'>";
             echo "<tr class='inner'><td colspan='3' class='inner'>",$line[0][0],"</td></tr>";
-            echo "<tr class='inner'><td class='left' colspan='2'>",$line[0][1],"</td><td class='right'>",$line[0][4],"</td></tr>";
+            echo "<tr class='inner'><td class='left' colspan='2'>",$line[0][1],"</td><td class='right'><a href='".$line[0][5]."'>",$line[0][4],"</a></td></tr>";
             echo "</table>";
             $i += $line[0][3];
             array_shift($line);
