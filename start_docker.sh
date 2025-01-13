@@ -10,6 +10,8 @@ docker run --net host --name httpd --rm -d -v ./web:/var/www/html -p 80:80 -p 44
 
 sleep 5 # sometimes postgres isn't ready yet lmao
 
+# recommended to have a .pgpass file, otherwise you're typing in the password 3 times
+
 psql -h localhost -U postgres < schema.sql # doesn't pick the database because this sql file drops the database
 psql -h localhost -U postgres schedule < data.sql
 
