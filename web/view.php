@@ -68,9 +68,14 @@ if(isset($_GET['courses']))
     $courses = $_GET['courses'];
 else
     $courses = NULL;
+
+if(isset($_GET['week']))
+    $week = $_GET['week'];
+else
+    $week = '8';
 foreach(Array('mon','tue','wed','thu','fri') as $day) {
 #foreach(Array('mon') as $day) {
-    $schedule = get_schedule($dbconn,$day,8,$courses);
+    $schedule = get_schedule($dbconn,$day,$week,$courses);
 
 
 
