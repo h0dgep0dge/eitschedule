@@ -109,7 +109,7 @@ echo "</table>\n";
 
 // Closing connection
 pg_close($dbconn);
-
+echo "Click <a href='export.php?".$_SERVER['QUERY_STRING']."'>here</a> to export these courses as an iCal file. Please take care! I will not take responsibility for how annoying these events are to delete if they're worng.";
 ?>
 </body>
 </html>
