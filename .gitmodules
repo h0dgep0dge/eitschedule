@@ -1,0 +1,3 @@
+[submodule "web/icalendar"]
+	path = web/icalendar
+	url = https://github.com/ZContent/icalendar.git
