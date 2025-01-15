@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-function get_schedule($conn,$day,$week,$courses) {
+function get_schedule($conn,$day,$week,$courses,$campus) {
 
     $where = "WHERE Sessions.week = ".(string)$week." AND Slots.day = '".$day."' ";
     if(is_array($courses) && count($courses) > 0){
@@ -13,12 +13,18 @@ function get_schedule($conn,$day,$week,$courses) {
             $where .= " OR Courses.name = '".$course."'";
         $where .= ") ";
     }
+
+    if(is_string($campus) && $campus != '') {
+        $where .= " AND Courses.campus ='".$campus."' ";
+    }
+
     $query = "SELECT Courses.name,Courses.lecturername,Lecturers.url,Slots.room,Slots.slottime,Slots.slotlength FROM Sessions ".
              "JOIN Slots ON Sessions.slotID = Slots.slotID ".
-             "JOIN Courses ON Slots.courseName = Courses.name ".
-             "JOIN Lecturers ON Courses.lecturername = Lecturers.name ".
+             "JOIN Courses ON Slots.courseName = Courses.name AND Slots.campus = Courses.campus ".
+             "LEFT JOIN Lecturers ON Courses.lecturername = Lecturers.name ".
              $where.
              "ORDER BY Slots.slottime;";
+    //echo $query,PHP_EOL;
     $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
     
     $slots = Array();
@@ -73,9 +79,15 @@ if(isset($_GET['week']))
     $week = $_GET['week'];
 else
     $week = '8';
+
+if(isset($_GET['campus']))
+    $campus = $_GET['campus'];
+else
+    $campus = '';
+
 foreach(Array('mon','tue','wed','thu','fri') as $day) {
 #foreach(Array('mon') as $day) {
-    $schedule = get_schedule($dbconn,$day,$week,$courses);
+    $schedule = get_schedule($dbconn,$day,$week,$courses,$campus);
 
 
 
@@ -93,7 +105,10 @@ foreach($schedule as $line) {
             echo "<td class='outer' colspan='",$line[0][3]*2,"'>";
             echo "<table class='inner'>";
             echo "<tr class='inner'><td colspan='3' class='inner'>",$line[0][0],"</td></tr>";
-            echo "<tr class='inner'><td class='left' colspan='2'>",$line[0][1],"</td><td class='right'><a href='".$line[0][5]."'>",$line[0][4],"</a></td></tr>";
+            if($line[0][4] == '') // No lecturer for this class yet!
+                echo "<tr class='inner'><td class='left' colspan='2'>",$line[0][1],"</td><td class='right'>TBD</td></tr>";
+            else
+                echo "<tr class='inner'><td class='left' colspan='2'>",$line[0][1],"</td><td class='right'><a href='".$line[0][5]."'>",$line[0][4],"</a></td></tr>";
             echo "</table>";
             $i += $line[0][3];
             array_shift($line);

@@ -43,6 +43,11 @@ if(isset($_GET['courses']))
     $courses = $_GET['courses'];
 else
     die("No courses selected");
+
+if(isset($_GET['campus']))
+    $campus = $_GET['campus'];
+else
+    die("No campus selected");
 //$courses = Array('Advanced Object-Oriented Programming','Data Analytics','Enterprise Support And Infrastructure','Internship');
 //$courses = Array('Advanced Object-Oriented Programming');
 
@@ -58,10 +63,14 @@ if(is_array($courses) && count($courses) > 0) {
     $where .= ") ";
 } else die("Courses input is busted bro");
 
+if(is_string($campus) && $campus != '') {
+    $where .= " AND Courses.campus ='".$campus."' ";
+}
+
 $query = "SELECT Sessions.week,Slots.room,Slots.Day,Slots.slottime,Slots.slotlength,Courses.name FROM Sessions ".
 "JOIN Slots ON Sessions.slotID = Slots.slotID ".
-"JOIN Courses ON Slots.courseName = Courses.name ".
-"JOIN Lecturers ON Courses.lecturername = Lecturers.name ".
+"JOIN Courses ON Slots.courseName = Courses.name AND Slots.campus = Courses.campus ".
+"LEFT JOIN Lecturers ON Courses.lecturername = Lecturers.name ".
 $where.
 "ORDER BY Slots.slottime;";
 

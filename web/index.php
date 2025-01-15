@@ -8,9 +8,23 @@ or die('Could not connect: ' . pg_last_error());
 $query = "SELECT Courses.name,Courses.lecturername FROM Courses;";
 $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
-echo "<form action='view.php' method='get'>Select your courses<br><select name='courses[]' size='10' multiple>";
+echo "<form action='view.php' method='get'>";
+
+$query = "SELECT Courses.campus FROM Courses GROUP BY Courses.campus ORDER BY campus ASC;";
+$result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+echo "Select your campus<br><select name='campus'>";
 while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo "<option value='".$row["name"]."'>",$row["name"]," with ",$row["lecturername"],"</option>";
+    echo "<option>",$row["campus"],"</option>";
+}
+echo "</select><br>";
+pg_free_result($result);
+
+$query = "SELECT Courses.name FROM Courses GROUP BY Courses.name;";
+$result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+
+echo "Select your courses<br><select name='courses[]' size='10' multiple>";
+while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+    echo "<option value='".$row["name"]."'>",$row["name"],"</option>";
 }
 echo "</select><br>";
 pg_free_result($result);
