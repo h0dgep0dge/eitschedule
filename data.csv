@@ -1,28 +1,90 @@
-Enterprise Support And Infrastructure,c320,mon,9,2,"8-15,18-22,24-26"
-Digital Forensics Fundamentals,c316,mon,11,1,"8-15,18-22,24-26"
-Data Analytics,c316,mon,13,3,"8-15,18-22"
-Electronics And Internet Of Things,g122a,mon,13,4,"8-15,18-22,24-26"
-Information Systems,c214/c215,mon,10,2,"8-15,18-22,24-26"
-Knowledge Management,c113,mon,13,2,"8-15,18-22,24-26"
-Systems Analysis,a113,mon,9,2,"8-15,18-22,24-26"
-Introduction To Data Concepts,c214/c215,mon,13,2,"8-15,18-22,24-26"
-Machine Learning And Artificial Intelligence,g122a,tue,9,4,"8-15,18-26"
-Systems Analysis,c312,tue,10,2,"8-15,18-26"
-Advanced Object-Oriented Programming,c316,tue,13,2,"8-15,18-26"
-Project Management,c218,tue,15,2,"8-15,18-26"
-Ux And Ui Fundamentals,c214/c215,tue,10,2,"8-15,18-26"
-Agile Projects,c214/c215,tue,13,2,"8-15,18-26"
-Data Analytics,c316,wed,9,1,"8-15,18-22,24-26"
-Agile Projects,c214/c215,wed,10,2,"8-15,18-26"
-Information Systems,c214/c215,wed,13,2,"8-15,18-26"
-Project Management,c218,wed,10,2,"8-15,18-26"
-Web Application Programming,c316,wed,10,2,"8-15,18-26"
-Advanced Object-Oriented Programming,c316,wed,13,2,"8-15,18-26"
-Enterprise Support And Infrastructure,c320,wed,13,2,"8-15,18-26"
-Internship,a113,thu,10,1,"8-15,18-26"
-Introduction To Data Concepts,c214/c215,thu,10,2,"8-15,18-26"
-Digital Forensics Fundamentals,c316,thu,13,3,"8-15,18-26"
-Special Topic,a113,thu,9,1,"8-15,18-26"
-Knowledge Management,c316,thu,10,2,"8-15,18-26"
-Ux And Ui Fundamentals,c214/c215,thu,13,2,"8-15,18-26"
-Web Application Programming,c316,fri,10,2,"8-15,18-24,26"
+Courses,Advanced Object-Oriented Programming,Taradale,Daniel Dang,,,,
+Courses,Agile Projects,Taradale,Noor Alani,,,,
+Courses,Agile Projects,Tairawhiti,Anastasia Mozhaeva,,,,
+Courses,Data Analytics,Taradale,Noor Alani,,,,
+Courses,Data Analytics,Tairawhiti,Damith Wijewardana,,,,
+Courses,Digital Forensics Fundamentals,Taradale,John Jamieson,,,,
+Courses,Digital Forensics Fundamentals,Tairawhiti,Damith Wijewardana,,,,
+Courses,Electronics and Internet of Things Technology,Taradale,Istvan Lengyel,,,,
+Courses,Electronics and Internet of Things Technology,Tairawhiti,Neema Joseph,,,,
+Courses,Enterprise Support and Infrastructure,Taradale,Karam Khokra,,,,
+Courses,Information Systems,Taradale,Ian Purdon,,,,
+Courses,Information Systems,Tairawhiti,Neema Joseph,,,,
+Courses,Internship,Taradale,Ian Purdon,,,,
+Courses,Internship,Tairawhiti,Ian Allan,,,,
+Courses,Introduction to Data Concepts,Taradale,Daniel Dang,,,,
+Courses,Introduction to Data Concepts,Tairawhiti,Damith Wijewardana,,,,
+Courses,Knowledge Management,Taradale,Emre Erturk,,,,
+Courses,Machine Learning and Artificial Intelligence,Taradale,Istvan Lengyel,,,,
+Courses,Machine Learning and Artificial Intelligence,Tairawhiti,Anastasia Mozhaeva,,,,
+Courses,Project Management,Taradale,Karam Khokra,,,,
+Courses,Project Management,Tairawhiti,Ian Allan,,,,
+Courses,Special Topic,Taradale,Emre Erturk,,,,
+Courses,Special Topic,Tairawhiti,,,,,
+Courses,Systems Analysis,Taradale,Emre Erturk,,,,
+Courses,Systems Analysis,Tairawhiti,,,,,
+Courses,UX and UI Fundamentals,Taradale,Graham Ward,,,,
+Courses,UX and UI Fundamentals,Tairawhiti,Ian Allan,,,,
+Courses,Web Application Programming,Taradale,Daniel Dang,,,,
+Lecturers,Daniel Dang,https://www.eit.ac.nz/staff/daniel-dang/,,,,,
+Lecturers,Emre Erturk,https://www.eit.ac.nz/staff/emre-erturk/,,,,,
+Lecturers,Graham Ward,https://www.eit.ac.nz/staff/graham-ward/,,,,,
+Lecturers,Ian Purdon,https://www.eit.ac.nz/staff/ian-purdon/,,,,,
+Lecturers,Istvan Lengyel,https://www.eit.ac.nz/staff/istvan-lengyel/,,,,,
+Lecturers,John Jamieson,https://www.eit.ac.nz/staff/john-jamieson/,,,,,
+Lecturers,Karam Khokra,https://www.eit.ac.nz/staff/karam-khokra/,,,,,
+Lecturers,Noor Alani,https://www.eit.ac.nz/staff/noor-alani/,,,,,
+Lecturers,Ian Allan,https://www.eit.ac.nz/staff/ian-allan/,,,,,
+Lecturers,Neema Joseph,,,,,,
+Lecturers,Anastasia Mozhaeva,https://www.eit.ac.nz/staff/anastasia-mozhaeva/,,,,,
+Lecturers,Damith Wijewardana,,,,,,
+Slots,Advanced Object-Oriented Programming,Taradale,C316,tue,13,2,"8-15,18-26"
+Slots,Advanced Object-Oriented Programming,Taradale,C316,wed,13,2,"8-15,18-26"
+Slots,Agile Projects,Taradale,C214/C215,tue,13,2,"8-15,18-26"
+Slots,Agile Projects,Taradale,C214/C215,wed,10,2,"8-15,18-26"
+Slots,Agile Projects,Tairawhiti,PM131,mon,13,2,"8-15,18-26"
+Slots,Agile Projects,Tairawhiti,PB101,tue,13,2,"8-15,18-26"
+Slots,Data Analytics,Taradale,C316,mon,13,3,"8-15,18-22"
+Slots,Data Analytics,Taradale,C316,wed,9,1,"8-15,18-22,24-26"
+Slots,Data Analytics,Tairawhiti,PC101,mon,13,3,"8-15,18-26"
+Slots,Data Analytics,Tairawhiti,PC101,wed,9,1,"8-15,18-26"
+Slots,Digital Forensics Fundamentals,Taradale,C316,mon,11,1,"8-15,18-22,24-26"
+Slots,Digital Forensics Fundamentals,Taradale,C316,thu,13,3,"8-15,18-26"
+Slots,Digital Forensics Fundamentals,Tairawhiti,PA105,mon,11,1,"8-15,18-22,24-26"
+Slots,Digital Forensics Fundamentals,Tairawhiti,PC101,thu,13,3,"8-15,18-26"
+Slots,Electronics and Internet of Things Technology,Taradale,G122A,mon,13,4,"8-15,18-22,24-26"
+Slots,Electronics and Internet of Things Technology,Tairawhiti,PB101,mon,13,2,"8-15,18-22,24-26"
+Slots,Electronics and Internet of Things Technology,Tairawhiti,PB101,wed,10,2,"8-15,18-26"
+Slots,Enterprise Support and Infrastructure,Taradale,C320,mon,9,2,"8-15,18-22,24-26"
+Slots,Enterprise Support and Infrastructure,Taradale,C320,wed,13,2,"8-15,18-26"
+Slots,Information Systems,Taradale,C214/C215,mon,10,2,"8-15,18-22,24-26"
+Slots,Information Systems,Taradale,C214/C215,wed,13,2,"8-15,18-26"
+Slots,Information Systems,Tairawhiti,PC101,mon,10,2,"8-15,18-22,24-26"
+Slots,Information Systems,Tairawhiti,PM112,tue,10,2,"8-15,18-26"
+Slots,Internship,Taradale,A113,thu,10,1,"8-15,18-26"
+Slots,Internship,Tairawhiti,PM131,mon,11,1,"8-15,18-22,24-26"
+Slots,Introduction to Data Concepts,Taradale,C214/C215,mon,13,2,"8-15,18-22,24-26"
+Slots,Introduction to Data Concepts,Taradale,C214/C215,thu,10,2,"8-15,18-26"
+Slots,Introduction to Data Concepts,Tairawhiti,PC101,wed,13,2,"8-15,18-22,24-26"
+Slots,Introduction to Data Concepts,Tairawhiti,PC101,thu,10,2,"8-15,18-26"
+Slots,Knowledge Management,Taradale,C113,mon,13,2,"8-15,18-22,24-26"
+Slots,Knowledge Management,Taradale,C316,thu,10,2,"8-15,18-26"
+Slots,Machine Learning and Artificial Intelligence,Taradale,G122A,tue,9,4,"8-15,18-26"
+Slots,Machine Learning and Artificial Intelligence,Tairawhiti,PB101,mon,9,2,"8-15,18-22,24-26"
+Slots,Machine Learning and Artificial Intelligence,Tairawhiti,PB101,tue,10,2,"8-15,18-26"
+Slots,Project Management,Taradale,C218,tue,15,2,"8-15,18-26"
+Slots,Project Management,Taradale,C218,wed,10,2,"8-15,18-26"
+Slots,Project Management,Tairawhiti,PA105,tue,10,2,"8-15,18-26"
+Slots,Project Management,Tairawhiti,PA105,thu,10,2,"8-15,18-26"
+Slots,Special Topic,Taradale,A113,thu,9,1,"8-15,18-26"
+Slots,Special Topic,Tairawhiti,PM108,thu,9,1,"8-15,18-26"
+Slots,Systems Analysis,Taradale,A113,mon,9,2,"8-15,18-22,24-26"
+Slots,Systems Analysis,Taradale,C312,tue,10,2,"8-15,18-26"
+Slots,Systems Analysis,Tairawhiti,PM131,mon,9,2,"8-15,18-22,24-26"
+Slots,Systems Analysis,Tairawhiti,PA104,wed,13,2,"8-15,18-26"
+Slots,UX and UI Fundamentals,Taradale,C214/C215,tue,10,2,"8-15,18-26"
+Slots,UX and UI Fundamentals,Taradale,C214/C215,thu,13,2,"8-15,18-26"
+Slots,UX and UI Fundamentals,Tairawhiti,PC101,wed,10,2,"8-15,18-26"
+Slots,UX and UI Fundamentals,Tairawhiti,PA105,thu,13,2,"8-15,18-26"
+Slots,Web Application Programming,Taradale,C316,wed,10,2,"8-15,18-26"
+Slots,Web Application Programming,Taradale,C316,fri,10,2,"8-15,18-24,26"
