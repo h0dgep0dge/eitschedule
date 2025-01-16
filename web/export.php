@@ -2,6 +2,7 @@
 
 require_once("./icalendar/zapcallib.php");
 
+date_default_timezone_set('UTC');
 
 $days = Array('mon','tue','wed','thu','fri','sat','sun');
 
@@ -27,11 +28,11 @@ function addEvent($icalobj,$row) {
     $m = (string)floor(($dur-$h)*60);
 
 
-    $event_dur = 'PT'.$h.'H'.$m.'M';;
-
+    $event_dur = 'PT'.$h.'H'.$m.'M';
+    
     $eventobj = new ZCiCalNode("VEVENT", $icalobj->curnode);
     $eventobj->addNode(new ZCiCalDataNode("SUMMARY:" . $row['name']));
-    $eventobj->addNode(new ZCiCalDataNode("DTSTART:" . ZDateHelper::toiCalDateTime($d)));
+    $eventobj->addNode(new ZCiCalDataNode("DTSTART;TZID=Pacific/Auckland:" . ZDateHelper::toiCalDateTime($d)));
     $eventobj->addNode(new ZCiCalDataNode("DURATION:" . $event_dur));
     $eventobj->addNode(new ZCiCalDataNode("LOCATION:" . $row['room']));
     $uid = date('Y-m-d-H-i-s-') . (string)rand(100000,999999) . "@schedule.n0mad.nz";
