@@ -1,0 +1,10 @@
+services:
+  web:
+    build: ./web
+    ports:
+      - "80:80"
+      - "443:443"
+  db:
+    build: ./db
+    environment:
+      POSTGRES_PASSWORD: "tinykite04"
