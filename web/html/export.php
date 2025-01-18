@@ -52,7 +52,7 @@ else
 //$courses = Array('Advanced Object-Oriented Programming','Data Analytics','Enterprise Support And Infrastructure','Internship');
 //$courses = Array('Advanced Object-Oriented Programming');
 
-$dbconn = pg_connect("host=localhost dbname=schedule user=postgres password=tinykite04")
+$dbconn = pg_connect("host=db dbname=schedule user=postgres")
     or die('Could not connect: ' . pg_last_error());
 
 

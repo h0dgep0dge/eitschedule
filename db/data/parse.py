@@ -4,7 +4,7 @@ lecturers = []
 courses = []
 slots = []
 
-with open('data.csv', newline='') as csvfile:
+with open('/data/data.csv', newline='') as csvfile:
     reader = csv.reader(csvfile,delimiter=',', quotechar='"')
     for row in reader:
         match row[0]:

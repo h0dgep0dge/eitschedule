@@ -60,7 +60,7 @@ function get_schedule($conn,$day,$week,$courses,$campus) {
 $days = Array('mon'=>'Monday','tue'=>'Tuesday','wed'=>'Wednesday','thu'=>'Thursday','fri'=>'Friday','sat'=>'Saturday','sun'=>'Sunday');
 
 // Connecting, selecting database
-$dbconn = pg_connect("host=localhost dbname=schedule user=postgres password=tinykite04")
+$dbconn = pg_connect("host=db dbname=schedule user=postgres")
     or die('Could not connect: ' . pg_last_error());
 
 echo "<table class='outer'>\n";

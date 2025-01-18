@@ -2,7 +2,7 @@
 <html><body>
 <?php
 
-$dbconn = pg_connect("host=localhost dbname=schedule user=postgres password=tinykite04")
+$dbconn = pg_connect("host=db dbname=schedule user=postgres")
 or die('Could not connect: ' . pg_last_error());
 
 $query = "SELECT Courses.name,Courses.lecturername FROM Courses;";
