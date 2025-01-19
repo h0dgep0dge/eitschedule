@@ -1,5 +1,7 @@
 <?php
 
+require_once('./db.php');
+
 require_once("./icalendar/zapcallib.php");
 
 date_default_timezone_set('UTC');
@@ -43,7 +45,7 @@ function addEvent($icalobj,$row) {
 if(isset($_GET['courses']))
     $courses = $_GET['courses'];
 else
-    die("No courses selected");
+    die("No courses selected. If you really REALLY want to export everything, go back and select everything");
 
 if(isset($_GET['campus']))
     $campus = $_GET['campus'];
@@ -52,36 +54,12 @@ else
 //$courses = Array('Advanced Object-Oriented Programming','Data Analytics','Enterprise Support And Infrastructure','Internship');
 //$courses = Array('Advanced Object-Oriented Programming');
 
-$dbconn = pg_connect("host=db dbname=schedule user=postgres")
-    or die('Could not connect: ' . pg_last_error());
-
-
-$where = '';
-if(is_array($courses) && count($courses) > 0) {
-    $where .= "WHERE (FALSE";
-    foreach($courses as $course)
-        $where .= " OR Courses.name = '".$course."'";
-    $where .= ") ";
-} else die("Courses input is busted bro");
-
-if(is_string($campus) && $campus != '') {
-    $where .= " AND Courses.campus ='".$campus."' ";
-}
-
-$query = "SELECT Sessions.week,Slots.room,Slots.Day,Slots.slottime,Slots.slotlength,Courses.name FROM Sessions ".
-"JOIN Slots ON Sessions.slotID = Slots.slotID ".
-"JOIN Courses ON Slots.courseName = Courses.name AND Slots.campus = Courses.campus ".
-"LEFT JOIN Lecturers ON Courses.lecturername = Lecturers.name ".
-$where.
-"ORDER BY Slots.slottime;";
-
-$result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+$sessions = getSessions($courses,$campus,NULL);
 
 $icalobj = new ZCiCal();
 
-
-while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    addEvent($icalobj,$line);
+foreach($sessions as $session) {
+    addEvent($icalobj,$session);
 }
 
 header('Content-Type: application/octet-stream');
@@ -89,7 +67,5 @@ header('Content-Transfer-Encoding: Binary');
 header('Content-disposition: attachment; filename="BCS.ics"');
 echo $icalobj->export();
 
-pg_free_result($result);
-
-pg_close($dbconn);
+closeDB();
 ?>
