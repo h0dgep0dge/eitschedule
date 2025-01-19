@@ -2,45 +2,34 @@
 <html><body>
 <?php
 
-$dbconn = pg_connect("host=db dbname=schedule user=postgres")
-or die('Could not connect: ' . pg_last_error());
-
-$query = "SELECT Courses.name,Courses.lecturername FROM Courses;";
-$result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+require_once('./db.php');
 
 echo "<form action='view.php' method='get'>";
 
-$query = "SELECT Courses.campus FROM Courses GROUP BY Courses.campus ORDER BY campus ASC;";
-$result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 echo "Select your campus<br><select name='campus'>";
-while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo "<option>",$row["campus"],"</option>";
-}
-echo "</select><br>";
-pg_free_result($result);
 
-$query = "SELECT Courses.name FROM Courses GROUP BY Courses.name;";
-$result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+foreach(getCampuses() as $campus)
+    echo "<option>",$campus,"</option>";
+
+echo "</select><br>";
 
 echo "Select your courses<br><select name='courses[]' size='10' multiple>";
-while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo "<option value='".$row["name"]."'>",$row["name"],"</option>";
-}
+
+foreach(getAllCourses() as $course)
+    echo "<option value='".$course."'>",$course,"</option>";
+
 echo "</select><br>";
-pg_free_result($result);
-
-
-
-$query = "SELECT week FROM Sessions GROUP BY week ORDER BY week;";
-$result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
 echo "Select your week <select name='week'>";
-while($row = pg_fetch_array($result,null,PGSQL_ASSOC))
-    echo "<option>",$row["week"],"</option>";
+
+foreach(getWeeks() as $week)
+    echo "<option>",$week,"</option>";
+
 echo "</select><br>";
 
 echo "<input type='submit' value='Go'></form>";
-pg_close($dbconn);
+
+closeDB();
 
 ?>
 This project is strictly alpha, do not rely on the results!
