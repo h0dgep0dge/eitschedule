@@ -87,7 +87,7 @@ foreach($sortedSessionsPerDay as $day => $schedule) {
                 if($session['lecturername'] == '') // No lecturer for this class yet!
                     echo "<tr class='inner'><td class='left' colspan='2'>",$session['room'],"</td><td class='right'>TBD</td></tr>";
                 else
-                    echo "<tr class='inner'><td class='left' colspan='2'>",$session['room'],"</td><td class='right'><a href='".$session['room']."'>",$session['lecturername'],"</a></td></tr>";
+                    echo "<tr class='inner'><td class='left' colspan='2'>",$session['room'],"</td><td class='right'><a href='".$session['url']."'>",$session['lecturername'],"</a></td></tr>";
                 echo "</table>";
                 $i += $session['slotlength'];
                 array_shift($line);
