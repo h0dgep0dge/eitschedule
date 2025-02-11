@@ -81,7 +81,7 @@ function getSessions($courses,$campus,$week) {
         $where .= " AND Courses.campus = '".SQLite3::escapeString($campus)."'";
     }
 
-    $query = "SELECT Courses.name,Courses.lecturername,Lecturers.url,Slots.room,Slots.day,Sessions.week,Slots.slottime as slottime,Slots.slotlength as slotlength FROM Sessions ".
+    $query = "SELECT Courses.name,Courses.lecturername,Lecturers.url,Slots.room,Slots.day,Sessions.week,Slots.slottime,Slots.slotlength FROM Sessions ".
              "JOIN Slots ON Sessions.slotID = Slots.slotID ".
              "JOIN Courses ON Slots.courseName = Courses.name AND Slots.campus = Courses.campus ".
              "LEFT JOIN Lecturers ON Courses.lecturername = Lecturers.name ".

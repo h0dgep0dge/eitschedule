@@ -18,24 +18,24 @@ CREATE TABLE Courses (
 );
 
 CREATE TABLE Weekdays (
-    dayName char(3) PRIMARY KEY NOT NULL
+    dayname char(3) PRIMARY KEY NOT NULL
 );
-INSERT INTO Weekdays(dayName) VALUES ('mon'),('tue'),('wed'),('thu'),('fri'),('sat'),('sun');
+INSERT INTO Weekdays(dayname) VALUES ('mon'),('tue'),('wed'),('thu'),('fri'),('sat'),('sun');
 
 CREATE TABLE Slots (
-    slotID INTEGER PRIMARY KEY NOT NULL,
-    courseName varchar(160) NOT NULL,
+    slotid INTEGER PRIMARY KEY NOT NULL,
+    coursename varchar(160) NOT NULL,
     campus CAMPUS_ENUM NOT NULL,
-    day char(3) REFERENCES Weekdays(dayName) NOT NULL,
-    slotTime NUMERIC(4,1) NOT NULL,
-    slotLength NUMERIC(2,1) NOT NULL,
+    day char(3) REFERENCES Weekdays(dayname) NOT NULL,
+    slottime NUMERIC(4,1) NOT NULL,
+    slotlength NUMERIC(2,1) NOT NULL,
     room VARCHAR(15),
-    FOREIGN KEY (courseName, campus) REFERENCES Courses (name, campus)
+    FOREIGN KEY (coursename, campus) REFERENCES Courses (name, campus)
 );
 
 CREATE TABLE Sessions (
-    sessionID INTEGER PRIMARY KEY NOT NULL,
-    slotID INT REFERENCES Slots(slotID) NOT NULL,
+    sessionid INTEGER PRIMARY KEY NOT NULL,
+    slotid INT REFERENCES Slots(slotid) NOT NULL,
     week INT NOT NULL
 );
 
