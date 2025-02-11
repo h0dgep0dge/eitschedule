@@ -1,14 +1,13 @@
-DROP DATABASE IF EXISTS schedule;
-CREATE DATABASE schedule;
-
-\connect schedule
-
 CREATE TABLE Lecturers (
     name VARCHAR(80) PRIMARY KEY NOT NULL,
     url VARCHAR(200)
 );
 
-CREATE TYPE CAMPUS_ENUM AS ENUM ('Taradale','Tairawhiti');
+CREATE TABLE Campuses (
+    name VARCHAR(20) NOT NULL
+);
+INSERT INTO Campuses(name) VALUES ('Taradale'),('Tairawhiti');
+
 
 CREATE TABLE Courses (
     name VARCHAR(160) NOT NULL,
@@ -18,13 +17,16 @@ CREATE TABLE Courses (
     PRIMARY KEY (name, campus)
 );
 
-CREATE TYPE WEEKDAY_ENUM AS ENUM ('mon','tue','wed','thu','fri','sat','sun');
+CREATE TABLE Weekdays (
+    dayName char(3) PRIMARY KEY NOT NULL
+);
+INSERT INTO Weekdays(dayName) VALUES ('mon'),('tue'),('wed'),('thu'),('fri'),('sat'),('sun');
 
 CREATE TABLE Slots (
-    slotID SERIAL PRIMARY KEY NOT NULL,
+    slotID INTEGER PRIMARY KEY NOT NULL,
     courseName varchar(160) NOT NULL,
     campus CAMPUS_ENUM NOT NULL,
-    day WEEKDAY_ENUM NOT NULL,
+    day char(3) REFERENCES Weekdays(dayName) NOT NULL,
     slotTime NUMERIC(4,1) NOT NULL,
     slotLength NUMERIC(2,1) NOT NULL,
     room VARCHAR(15),
@@ -32,7 +34,8 @@ CREATE TABLE Slots (
 );
 
 CREATE TABLE Sessions (
-    sessionID SERIAL PRIMARY KEY NOT NULL,
+    sessionID INTEGER PRIMARY KEY NOT NULL,
     slotID INT REFERENCES Slots(slotID) NOT NULL,
     week INT NOT NULL
 );
+

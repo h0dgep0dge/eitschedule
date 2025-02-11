@@ -4,7 +4,7 @@ lecturers = []
 courses = []
 slots = []
 
-with open('/data/data.csv', newline='') as csvfile:
+with open('data.csv', newline='') as csvfile:
     reader = csv.reader(csvfile,delimiter=',', quotechar='"')
     for row in reader:
         match row[0]:
@@ -39,15 +39,12 @@ for course in courses:
     first = False
 print(';\n')
 
+slotCounter = 1
+
 for slot in slots:
-    print("DO $$",
-          "DECLARE",
-          "    retslotID Slots.slotID%TYPE;",
-          "BEGIN",
-          "    INSERT INTO Slots (courseName,campus,day,slotTime,slotLength,room)",
-         f"    VALUES ('{slot['courseName']}','{slot['campus']}','{slot['day']}',{slot['time']},{slot['length']},'{slot['room']}')",
-          "    RETURNING Slots.slotID INTO retslotid;\n",
-          "    INSERT INTO Sessions (slotID,week) VALUES",sep='\n')
+    print("INSERT INTO Slots (slotID,courseName,campus,day,slotTime,slotLength,room)",
+         f"VALUES ({slotCounter},'{slot['courseName']}','{slot['campus']}','{slot['day']}',{slot['time']},{slot['length']},'{slot['room']}');\n",
+          "INSERT INTO Sessions (slotID,week) VALUES",sep='\n')
     
     ranges = slot['weeks'].split(',')
     first = True
@@ -61,6 +58,7 @@ for slot in slots:
         for week in l:
             if not first:
                 print(',')
-            print(f"    (retslotID,{week})",end='')
+            print(f"    ({slotCounter},{week})",end='')
             first = False
-    print(";\nEND $$;")
+    print(";\n")
+    slotCounter += 1
