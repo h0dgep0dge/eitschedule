@@ -1,8 +1,7 @@
 services:
   web:
-    build: ./web
-    volumes:
-      - ./html:/var/www/html # uncomment to update web docs in real time
+    build: .
+#    volumes:
+#      - ./html:/var/www/html # uncomment to update web docs in real time
     ports:
       - "80:80"
-
