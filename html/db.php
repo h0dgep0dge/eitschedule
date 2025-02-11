@@ -1,7 +1,7 @@
 <?php
 
-$dbconn = pg_connect("host=db dbname=schedule user=postgres")
-or die('Could not connect: ' . pg_last_error());
+$dbconn = new SQLite3('./schedule.db')
+or die('Could not connect');
 
 function getCampuses() {
     global $dbconn;
@@ -9,12 +9,12 @@ function getCampuses() {
     $campuses = Array();
 
     $query = "SELECT Courses.campus FROM Courses GROUP BY Courses.campus ORDER BY campus ASC;";
-    $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+    $result = $dbconn->query($query) or die('Query failed');
 
-    while ($row = pg_fetch_array($result, null, PGSQL_ASSOC))
+    while ($row = $result->fetchArray(SQLITE3_ASSOC))
         $campuses[] = $row["campus"];
     
-    pg_free_result($result);
+    $result->finalize();
     
     return $campuses;
 }
@@ -25,12 +25,12 @@ function getAllCourses() {
     $courses = Array();
 
     $query = "SELECT Courses.name FROM Courses GROUP BY Courses.name;";
-    $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+    $result = $dbconn->query($query) or die('Query failed');
 
-    while ($row = pg_fetch_array($result, null, PGSQL_ASSOC))
+    while ($row = $result->fetchArray(SQLITE3_ASSOC))
         $courses[] = $row["name"];
     
-    pg_free_result($result);
+    $result->finalize();
 
     return $courses;
 }
@@ -38,27 +38,26 @@ function getAllCourses() {
 function getWeeks() {
     global $dbconn;
 
-    $weeks = Array();
+    $courses = Array();
 
     $query = "SELECT week FROM Sessions GROUP BY week ORDER BY week;";
-    $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+    $result = $dbconn->query($query) or die('Query failed');
 
-    while($row = pg_fetch_array($result,null,PGSQL_ASSOC))
-        $weeks[] = $row["week"];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC))
+        $courses[] = $row["week"];
+    
+    $result->finalize();
 
-    pg_free_result($result);
-
-    return $weeks;
+    return $courses;
 }
 
 function closeDB() {
-    global $dbconn;
-    pg_close($dbconn);
+    // I guess you don't have to do this?
 }
 
 function getSessions($courses,$campus,$week) {
     global $dbconn;
-
+    
     $slots = Array();
 
     $where = "WHERE TRUE";
@@ -67,37 +66,34 @@ function getSessions($courses,$campus,$week) {
     $i = 1;
 
     if(!is_null($week)) {
-        $where .= ' AND week = $'.(string)$i++;
-        $parameters[] = (string)$week;
+        $where .= " AND week = '".SQLite3::escapeString($week)."'";
     }
 
     if(is_array($courses) && count($courses) > 0){
         $where .= " AND (FALSE";
         foreach($courses as $course) {
-            $where .= ' OR Courses.name = $'.(string)$i++;
-            $parameters[] = $course;
+            $where .= " OR Courses.name = '".SQLite3::escapeString($course)."'";
         }
         $where .= ")";
     }
 
     if(is_string($campus) && $campus != '') {
-        $where .= ' AND Courses.campus = $'.(string)$i++;
-        $parameters[] = $campus;
+        $where .= " AND Courses.campus = '".SQLite3::escapeString($campus)."'";
     }
 
-    $query = "SELECT Courses.name,Courses.lecturername,Lecturers.url,Slots.room,Slots.day,Sessions.week,Slots.slottime,Slots.slotlength FROM Sessions ".
+    $query = "SELECT Courses.name,Courses.lecturername,Lecturers.url,Slots.room,Slots.day,Sessions.week,Slots.slottime as slottime,Slots.slotlength as slotlength FROM Sessions ".
              "JOIN Slots ON Sessions.slotID = Slots.slotID ".
              "JOIN Courses ON Slots.courseName = Courses.name AND Slots.campus = Courses.campus ".
              "LEFT JOIN Lecturers ON Courses.lecturername = Lecturers.name ".
              $where.
              " ORDER BY Slots.slottime;";
+             
+    $result = $dbconn->query($query) or die('Query failed');
     
-    $result = pg_query_params($dbconn, $query, $parameters) or die('Query failed: ' . pg_last_error());
-
-    while($row = pg_fetch_array($result,null,PGSQL_ASSOC))
+    while($row = $result->fetchArray(SQLITE3_ASSOC))
         $slots[] = $row;
 
-    pg_free_result($result);
+    $result->finalize();
 
     return $slots;
 }
