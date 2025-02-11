@@ -8,5 +8,5 @@ RUN /data/load.sh
 
 FROM php:apache
 
-COPY --from=0 /data/schedule.db /var/www/html/
 COPY ./html /var/www/html
+COPY --from=0 /data/schedule.db /var/www/html/
